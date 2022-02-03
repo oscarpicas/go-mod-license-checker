@@ -1,0 +1,26 @@
+name: 'Go modules License Checker'
+author: 'oscarpicas'
+description: 'Check licenses of dependencies for go projects using modules'
+branding:
+  icon: file-text
+  color: green
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Go 1.16
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.16
+      id: go
+
+    - name: Get google/go-licenses package
+      run: go install github.com/Bobgy/go-licenses/v2
+      shell: bash
+
+    - name: Run Check
+      run: ${{ github.action_path }}/check.sh
+      shell: bash
+    
+    - name: Get them as csv
+      run: go-licenses csv .
+      shell: bash
