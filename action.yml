@@ -1,24 +1,25 @@
 name: 'Go modules License Checker'
 author: 'oscarpicas'
 description: 'Check licenses of dependencies for go projects using modules'
+inputs:
+  go-version:
+    description: 'The Go version to download (if necessary) and use. Supports semver spec and ranges.'
+    required: false
+    default: '1.16'
 branding:
   icon: file-text
   color: green
 runs:
   using: "composite"
   steps:
-    - name: Set up Go 1.16
+    - name: Set up Go version
       uses: actions/setup-go@v2
       with:
-        go-version: 1.16
+        go-version: {{ github.event.inputs.go-version }}
       id: go
 
     - name: Get Bobgy fork of google/go-licenses package
       run: go get github.com/Bobgy/go-licenses/v2
-      shell: bash
-
-    - name: Download deps
-      run: go mod download
       shell: bash
     
     - name: Get licenses as csv
