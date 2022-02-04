@@ -17,6 +17,10 @@ runs:
       run: go get github.com/Bobgy/go-licenses/v2
       shell: bash
 
+    - name: Download deps
+      run: go mod download
+      shell: bash
+
     - name: Run Check
       run: ${{ github.action_path }}/check.sh
       shell: bash
