@@ -12,6 +12,12 @@ branding:
 runs:
   using: "composite"
   steps:
+    - name: Backup go.mod
+      run: cp go.mod go.mod.bak || true
+      shell: bash
+    - name: Backup go.sum
+      run: cp go.sum go.sum.bak || true
+      shell: bash
     - name: Set up Go version
       uses: actions/setup-go@v2
       with:
@@ -20,6 +26,12 @@ runs:
 
     - name: Get Bobgy fork of google/go-licenses package
       run: go get github.com/Bobgy/go-licenses/v2
+      shell: bash
+    - name: Restore go.mod
+      run: cp -f go.mod.bak go.mod || true
+      shell: bash
+    - name: Restore go.sum
+      run: cp -f go.sum.bak go.sum || true
       shell: bash
 
     - name: Get licenses as csv
