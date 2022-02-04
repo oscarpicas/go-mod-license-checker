@@ -20,11 +20,7 @@ runs:
     - name: Download deps
       run: go mod download
       shell: bash
-
-    - name: Run Check
-      run: ${{ github.action_path }}/check.sh
-      shell: bash
     
-    - name: Get them as csv
+    - name: Get licenses as csv
       run: go-licenses csv ./...
       shell: bash
