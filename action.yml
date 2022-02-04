@@ -22,5 +22,5 @@ runs:
       shell: bash
     
     - name: Get them as csv
-      run: go-licenses csv .
+      run: go-licenses csv ./...
       shell: bash
