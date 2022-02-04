@@ -23,7 +23,7 @@ runs:
       shell: bash
 
     - name: Get licenses as csv
-      run: go-licenses csv "$(head -n 1 go.mod | awk '{ print $2 }')/..." | tee licenses.csv
+      run: ${{ github.action_path }}/csv.sh
       shell: bash
 
     - name: Run Check
