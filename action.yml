@@ -13,7 +13,7 @@ runs:
         go-version: 1.16
       id: go
 
-    - name: Get google/go-licenses package
+    - name: Get Bobgy fork of google/go-licenses package
       run: go get github.com/Bobgy/go-licenses/v2
       shell: bash
 

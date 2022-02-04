@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-output=$(go-licenses check . 2>&1)
+output=$(go-licenses check ./... 2>&1)
 if [ -z "$output" ]; then
     echo "License Check Success"
     exit 0
