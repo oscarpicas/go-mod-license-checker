@@ -6,9 +6,10 @@ inputs:
     description: 'The Go version to download (if necessary) and use. Supports semver spec and ranges.'
     required: false
     default: '1.16'
-  target:
+  tdir:
     description: 'target directory'
-    required: true
+    required: false
+    default: '.'
 branding:
   icon: file-text
   color: green
@@ -18,7 +19,7 @@ runs:
     - name: Set up Go version
       uses: actions/setup-go@v2
       with:
-        go-version: ${{ github.event.inputs.goversion }}
+        go-version: ${{github.event.inputs.goversion}}
       id: go
 
     - name: Get Bobgy fork of google/go-licenses package
@@ -26,5 +27,5 @@ runs:
       shell: bash
     
     - name: Get licenses as csv
-      run: go-licenses csv ${{ github.event.inputs.target }}/...
+      run: go-licenses csv ${{github.event.inputs.tdir}}/...
       shell: bash
