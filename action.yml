@@ -6,6 +6,9 @@ inputs:
     description: 'The Go version to download (if necessary) and use. Supports semver spec and ranges.'
     required: false
     default: '1.16'
+  target:
+    description: 'target directory'
+    required: true
 branding:
   icon: file-text
   color: green
@@ -23,5 +26,5 @@ runs:
       shell: bash
     
     - name: Get licenses as csv
-      run: go-licenses csv ./...
+      run: go-licenses csv ${{ github.event.inputs.target }}/...
       shell: bash
